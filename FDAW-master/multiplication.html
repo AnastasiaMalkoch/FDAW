@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="" ng-init="a=1;b=1">
+
+  A = <input type="text" ng-model="a">
+  B = <input type="text" ng-model="b">
+
+  <div ng-if="b != 0">
+	<br>{{a}} * {{b}} = {{a * b}}
+  </div>
+</div>
+
+</body>
+</html>

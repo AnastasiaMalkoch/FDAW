@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+Число = <input type="text" ng-model="number" ng-init="number=1">
+<br><br><br>
+Результат : {{number}}^2 = {{count()}}
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.count = function() {
+        return Math.pow($scope.number, 2);
+        
+    };
+});
+</script>
+
+</body>
+</html>
