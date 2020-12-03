@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<title>Statement</title>
+	<style type="text/css">
+		body {
+			display: flex;
+			justify-content: center;
+		}
+		.form {
+			width: 300px;
+			height: 105%;
+			background-color: silver;
+			display: flex;
+			justify-content: center;
+		}
+		.margin {
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<div class="form">
+		<form class="form_css">
+			<h2>Statement</h2>
+			<input class="margin" type="text" ng-model="firstName" placeholder="Name"><br>
+			<input class="margin" type="text" ng-model="lastName" placeholder="Surname"><br>
+			<input class="margin" type="date" ng-model="birthDay">
+			<h2>Faculty</h2>
+			<p>
+				<input type="radio" ng-model="faculty" value="Chemistry">Chemistry
+			</p>
+			<p>
+				<input type="radio" ng-model="faculty" value="Informatics">Informatics
+			</p>
+			<p>
+				<input type="radio" ng-model="faculty" value="Mathematics">Mathematics
+			</p>
+			<p>
+				<input type="radio" ng-model="faculty" value="Biology">Biology
+			</p>
+			<div ng-switch="faculty">
+  				<div ng-switch-when="Chemistry">
+     				<select ng-model="specialty">
+     					<option></option>
+     					<option>Chemistry</option>
+     					<option>Organic chemistry</option>
+     				</select>
+  				</div>
+  				<div ng-switch-when="Informatics">
+     				<select ng-model="specialty">
+     					<option></option>
+     					<option>Informatics</option>
+     					<option>Applied informatics</option>
+     				</select>
+  				</div>
+  				<div ng-switch-when="Mathematics">
+     				<select ng-model="specialty">
+     					<option></option>
+     					<option>Mathematics</option>
+     					<option>Applied mathematics</option>
+     				</select>
+  				</div>
+  				<div ng-switch-when="Biology">
+     				<select ng-model="specialty">
+     					<option></option>
+     					<option>Biology</option>
+     					<option>Organic biology</option>
+     				</select>
+  				</div>
+			</div>
+			<h2>Expected salary</h2>
+			<input class="margin" type="number" ng-model="salary" placeholder="Salary">
+			<div ng-if="salary < 3000" ng-model="btn">
+				<p>You understimate yourself</p>
+			</div>
+			<div ng-if="salary > 10000">
+				<p>You overstimate yourself</p>
+			</div>
+			<br>
+			<button ng-disabled="!firstName || !lastName || !birthDay || !faculty || !salary || salary < 3000 || salary > 10000" ng-click="showing=true" class="margin">Send</button>
+			<button type="reset">Clear</button>
+			<div ng-show="showing">
+				<p>Name {{ firstName }}</p>
+				<p>Surname {{ lastName }}</p>
+				<p>Date of Birth {{ birthDay }}</p>
+				<p>Faculty {{ faculty }}</p>
+				<p>Salary {{ salary }}</p>
+			</div>
+		</form>
+	</div>
+	<script>
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function($scope) {
+			$scope.showing = false;
+		});
+	</script>
+</body>
+</html>
